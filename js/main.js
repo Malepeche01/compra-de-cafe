@@ -59,11 +59,14 @@ fetch("./js/variedades.json")
     })
 })
 
-verCompra.addEventListener("click", () =>{
+verCompra.addEventListener("click", async () =>{
     const tituloCarrito = document.createElement("div")
     tituloCarrito.innerHTML = `
     <h2>Carrito</h2>`
+
+
     
+
     contenidoCarrito.append(tituloCarrito);
 
     
@@ -84,8 +87,21 @@ verCompra.addEventListener("click", () =>{
         totalCompra.innerHTML = `Su compra: $${total}`;
 
         contenidoCarrito.append(totalCompra);
+
+        
     })
 
+    const { value: email } = await Swal.fire({
+        title: "Nos pondremos en contacto a la brevedad para hacerte el envío",
+        input: "email",
+        inputLabel: "Ingresá tu dirección de correo electrónico",
+        inputPlaceholder: "Nomre@mail.com"
+      });
+      if (email) {
+        Swal.fire(`email ingresado: ${email}`);
+      }
+
+  
 })
 
 
