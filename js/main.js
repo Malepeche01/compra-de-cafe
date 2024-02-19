@@ -8,9 +8,6 @@ container.appendChild(titulo);
 let carrito = []
 
 
-
-
-
 fetch("./js/variedades.json")
     .then(response => response.json())
     .then(data => {
@@ -60,12 +57,10 @@ fetch("./js/variedades.json")
 })
 
 verCompra.addEventListener("click", async () =>{
+    contenidoCarrito.innerHTML = ""
     const tituloCarrito = document.createElement("div")
     tituloCarrito.innerHTML = `
     <h2>Carrito</h2>`
-
-
-    
 
     contenidoCarrito.append(tituloCarrito);
 
@@ -82,29 +77,33 @@ verCompra.addEventListener("click", async () =>{
         
         contenidoCarrito.append(miCarrito);
     
-        const total = carrito.reduce((acc,el) => acc + el.precio, 0);
+        
+
+        
+    })
+
+    const total = carrito.reduce((acc,el) => acc + el.precio, 0);
         const totalCompra = document.createElement("div");
         totalCompra.innerHTML = `Su compra: $${total}`;
 
         contenidoCarrito.append(totalCompra);
 
+   
+    function mail(){
         
-    })
-
-    const { value: email } = await Swal.fire({
-        title: "Nos pondremos en contacto a la brevedad para hacerte el envío",
-        input: "email",
-        inputLabel: "Ingresá tu dirección de correo electrónico",
-        inputPlaceholder: "Nomre@mail.com"
-      });
-      if (email) {
-        Swal.fire(`email ingresado: ${email}`);
-      }
-
-  
+        const { value: email } = Swal.fire({
+            title: "Nos pondremos en contacto a la brevedad para hacerte el envío",
+            input: "email",
+            inputLabel: "Ingresá tu dirección de correo electrónico",
+            inputPlaceholder: "nombre@mail.com"
+          });
+          if (email) {
+            Swal.fire(`email ingresado: ${email}`);
+          }
+    }
+    setTimeout(mail, 5000);
+ 
 })
-
-
 
 const guardar = () => {
     localStorage.setItem("miCarrito", JSON.stringify(carrito))
