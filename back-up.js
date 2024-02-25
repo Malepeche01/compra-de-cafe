@@ -5,7 +5,6 @@ container.classList.add("container");
 const titulo = document.createElement("h2");
 titulo.innerText = ("Café de Especialidad en Casa");
 container.appendChild(titulo);
-
 let carrito = JSON.parse(localStorage.getItem("carrito")) || []
 let todoslosProductos =  []
 
@@ -53,12 +52,12 @@ fetch("./js/variedades.json")
         container.appendChild(card);  
 
         todoslosProductos.push(el)
- 
+   
     })
 })   
        
-function agregarAlCarrito(id) {
-
+function agregarAlCarrito(id){
+   
     const productoAAgregar = todoslosProductos.find(el => el.id === id)
 
     if(!carrito.some(el => el.id === id)){
@@ -68,7 +67,8 @@ function agregarAlCarrito(id) {
         })
     } else {
         let indiceDelProducto = carrito.findIndex(el => el.id === id)
-        carrito[indiceDelProducto].cantidad += 1
+      
+       carrito[indiceDelProducto].cantidad += 1
     }
 
     console.log(carrito)
@@ -77,23 +77,21 @@ function agregarAlCarrito(id) {
         text:`${productoAAgregar.id} agregado al carrito`,
         duration: 2000  
     })
-    .showToast()
-
-    save()
-   
+    .showToast()  
 }
 
-function miCompra() {
+function miCompra(){
+
 
         const mostrarCarrito = document.getElementById("contenidoCarrito")
-            mostrarCarrito.style.display = "block"
-            mostrarCarrito.innerHTML = ""
+            contenidoCarrito.style.display = "block"
+            contenidoCarrito.innerHTML = ""
             const tituloCarrito = document.createElement("div")
             tituloCarrito.innerHTML = `
             <h2 class ="titulo-carrito">Carrito</h2>`
 
-            mostrarCarrito.appendChild(tituloCarrito);
-           
+            contenidoCarrito.append(tituloCarrito);
+            contenidoCarrito.appendChild(btn)
             
         carrito.forEach((el) => {
             let miCarrito = document.createElement("div")
@@ -103,30 +101,37 @@ function miCompra() {
                 <p> $${el.precio}<p/>   
                 <p> ${el.cantidad} Un.<p/>  
                 <button class="borrar-item">🗑️<button/>`
-            
             mostrarCarrito.appendChild(miCarrito)
-           
-            miCarrito.querySelector(".borrar-item").addEventListener("click", () => {
+      
+            
+            let eliminar = contenidoCarrito.querySelector(".borrar-item")
+            
+            eliminar.addEventListener("click", () =>{
                 eliminarItem(el.id)
             })
-  
+            save()
         })
         const total = carrito.reduce((acc,el) => acc + el.precio * el.cantidad  , 0);
         const totalCompra = document.createElement("div");
         totalCompra.innerHTML = `Su compra: $${total}`;
-        mostrarCarrito.appendChild(totalCompra);
-}
-    
-const eliminarItem = id => {
-    carrito = carrito.filter(item => item.id !== id)
+        contenidoCarrito.append(totalCompra);
+ 
+    }    
+    const eliminarItem = (id) => {
+    const getItem = carrito.find(el => el.id === id)
+
+    console.log(getItem)
+
+    carrito = carrito.filter((nuevoCarritoID) => {
+        return nuevoCarritoID !== getItem
+    })
+
     miCompra()
-    save()
-
 }
-
+      
 const save =() => {
     localStorage.setItem("carrito", JSON.stringify(carrito))
-    }
+}
 
   
    

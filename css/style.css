@@ -33,13 +33,7 @@
    
     
 }
-#button{
-   
-    border-color: black;
-    border-style: double;
-    border-radius:10px;
-    cursor: pointer;
-}
+
 
 
 
@@ -89,6 +83,14 @@
     border-radius:5px;
     cursor: pointer;
 
+}
+
+
+.modificaCarrito{
+    border-color: black;
+    border-style:double;
+    border-radius:5px;
+    cursor: pointer;
 }
 
 /* HTML: <div class="loader"></div> */
