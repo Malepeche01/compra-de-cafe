@@ -9,51 +9,55 @@ let carrito = JSON.parse(localStorage.getItem("carrito")) || []
 let todoslosProductos =  []
 
 const btn = document.createElement("button")
-btn.innerText = "Mi Compra 🧺"
-btn.onclick = () => miCompra()
+btn.innerText = "Mi Canasta 🧺"
+btn.onclick = () => miCanasta()
 contenidoCarrito.appendChild(btn)
 
 
+
+
 fetch("./js/variedades.json")   
-    .then(response => response.json())
-    .then(data => {
-        const arrayCafes = data
-        arrayCafes.forEach (el =>{
-       
-        const card = document.createElement("card")
-        card.classList.add("card")
+.then(response => response.json())
+.then(data => {
+    const arrayCafes = data
+    arrayCafes.forEach (el =>{
     
-        const nombre = document.createElement("h4")
-        nombre.innerText =  el.nombre
+    const card = document.createElement("card")
+    card.classList.add("card")
 
-        const perfilDeTueste = document.createElement("p")
-        perfilDeTueste.innerText = el.perfilDeTueste
+    const nombre = document.createElement("h4")
+    nombre.innerText =  el.nombre
+
+    const perfilDeTueste = document.createElement("p")
+    perfilDeTueste.innerText = el.perfilDeTueste
+
+    const imagen = document.createElement("img")
+    imagen.src = el.imagen
+
+    const precio = document.createElement("p")
+    precio.innerText = `$ ${el.precio}`
     
-        const imagen = document.createElement("img")
-        imagen.src = el.imagen
+    const BTNagregar = document.createElement("button")
+    BTNagregar.innerText = "Agregar"
     
-        const precio = document.createElement("p")
-        precio.innerText = `$ ${el.precio}`
-        
-        const BTNagregar = document.createElement("button")
-        BTNagregar.innerText = "Agregar"
-       
-        BTNagregar.onclick = () => agregarAlCarrito(el.id)
-       
-        card.appendChild(nombre)
-        card.appendChild(imagen)
-        card.appendChild(perfilDeTueste)
-        card.appendChild(precio)
-        card.appendChild(BTNagregar) 
-        container.appendChild(card) 
+    BTNagregar.onclick = () => agregarAlCarrito(el.id)
+    
+    card.appendChild(nombre)
+    card.appendChild(imagen)
+    card.appendChild(perfilDeTueste)
+    card.appendChild(precio)
+    card.appendChild(BTNagregar) 
+    container.appendChild(card) 
 
-        todoslosProductos.push(el)
-    })
-})  
+    todoslosProductos.push(el)
+    
+})
+.catch((_error) => console.log("No se pudo procesar la info"))
+})
 
 
 
-       
+  
 function agregarAlCarrito(id) {
 
     const productoAAgregar = todoslosProductos.find(el => el.id === id)
@@ -76,17 +80,26 @@ function agregarAlCarrito(id) {
     save()     
 }
 
-function miCompra() {
+function miCanasta() {
 
         const mostrarCarrito = document.getElementById("contenidoCarrito")
-            mostrarCarrito.style.display = "block"
-            mostrarCarrito.innerHTML = ""
-            const tituloCarrito = document.createElement("div")
-            tituloCarrito.innerHTML = `
-            <h2 class ="titulo-carrito">Carrito</h2>`
+        mostrarCarrito.style.display = "block"
+        mostrarCarrito.innerHTML = ""
+        const tituloCarrito = document.createElement("div")
+        tituloCarrito.innerHTML = `
+        <h2 class ="titulo-carrito">Canasta</h2>`
 
-            mostrarCarrito.appendChild(tituloCarrito);
-           
+        mostrarCarrito.appendChild(tituloCarrito)
+    
+        const btn2 = document.createElement("button")
+        btn2.innerText = "Comprar"
+        btn2.onclick = () => comprarCarrito()
+        mostrarCarrito.appendChild(btn2)
+        
+        const btn3 = document.createElement("button")
+        btn3.innerText = "Eliminar Canasta"
+        btn3.onclick = () => eliminarCanasta()
+        mostrarCarrito.appendChild(btn3)  
             
         carrito.forEach((el) => {
             let miCarrito = document.createElement("div")
@@ -99,27 +112,42 @@ function miCompra() {
                 `
                
             mostrarCarrito.appendChild(miCarrito)
-           
+
+            
             miCarrito.querySelector(".borrar-item").addEventListener("click", () => {
                 eliminarItem(el.id)
+     
             })
-  
+            
         })
-        const total = carrito.reduce((acc,el) => acc + el.precio * el.cantidad  , 0)
-        const totalCompra = document.createElement("div")
-        totalCompra.innerHTML = `Su compra: $${total}`
-        mostrarCarrito.appendChild(totalCompra)
+
+        function comprarCarrito () {
+            const total = carrito.reduce((acc,el) => acc + el.precio * el.cantidad  , 0)
+            const totalCompra = document.createElement("div")
+            totalCompra.innerHTML = `<h3>Su compra: $${total}</h3>`
+            mostrarCarrito.appendChild(totalCompra)
+        }
+        save()  
+        
+        function eliminarCanasta() {
+            const canastaVacia =  mostrarCarrito.innerHTML = "" 
+            localStorage.clear()
+            mostrarCarrito.append(canastaVacia)
+        }                
 }
     
 const eliminarItem = id => {
     carrito = carrito.filter(item => item.id !== id)
-    miCompra()
+    miCanasta()
     save()
 }
 
 const save =() => {
     localStorage.setItem("carrito", JSON.stringify(carrito))
 }
+   
+
+
 
   
    

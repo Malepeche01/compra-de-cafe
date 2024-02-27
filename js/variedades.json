@@ -2,29 +2,7 @@
     {
        "id": "Arabica",
        "nombre": "Variedad Arábica",
-       "origen": [
-           "Guatemala",
-           "Honduras",
-           "El-Salvador",
-           "Costa-Rica",
-           "Panama",
-           "Mexico",
-           "Brasil",
-           "Colombia",
-           "Peru",
-           "Ecuador",
-           "Bolivia",
-           "Ethiopia",
-           "Kenya",
-           "Tanzania",
-           "Uganda",
-           "Rwanda",
-           "Burundi",
-           "Yemen",
-           "India",
-           "Indonesia",
-           "Papua-New-Guinea"
-       ],
+       
       
        "perfilDeTueste": "Tueste Claro",
    
@@ -33,21 +11,9 @@
        "precio": 3500
     },
    
-  
    {
        "id": "Robusta",
        "nombre": "Variedad Robusta",
-       "origen": [
-   
-           "Ivory-Coast",
-           "Cameroon",
-           "Nigeria",
-           "Vietnam",
-           "Indonesia",
-           "India",
-           "Thailand",
-           "Brasil"
-       ],
        
        "perfilDeTueste": "Tueste Oscuro",
    
@@ -57,15 +23,10 @@
      
    },
    
-   
    {
        "id": "Libérica",
        "nombre": "Variedad Liberica",
-       "origen": [
-           "Liberia",
-           "Sierra-Leone"
-         ],
-       
+     
        
       "perfilDeTueste": "Tueste Medio-Oscuro",
    
@@ -78,11 +39,7 @@
    {
        "id": "Excelsa",
       "nombre": "Variedad Excelsa",
-       "origen": [ 
-           "Vietnam",
-           "Cambodia",
-           "Thailand"
-       ],
+      
    
        "perfilDeTueste": "Tueste Medio",
    
