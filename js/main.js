@@ -22,39 +22,39 @@ fetch("./js/variedades.json")
     const arrayCafes = data
     arrayCafes.forEach (el =>{
     
-    const card = document.createElement("card")
-    card.classList.add("card")
+        const card = document.createElement("card")
+        card.classList.add("card")
 
-    const nombre = document.createElement("h4")
-    nombre.innerText =  el.nombre
+        const nombre = document.createElement("h4")
+        nombre.innerText =  el.nombre
 
-    const perfilDeTueste = document.createElement("p")
-    perfilDeTueste.innerText = el.perfilDeTueste
+        const perfilDeTueste = document.createElement("p")
+        perfilDeTueste.innerText = el.perfilDeTueste
 
-    const imagen = document.createElement("img")
-    imagen.src = el.imagen
+        const imagen = document.createElement("img")
+        imagen.src = el.imagen
 
-    const precio = document.createElement("p")
-    precio.innerText = `$ ${el.precio}`
+        const precio = document.createElement("p")
+        precio.innerText = `$ ${el.precio}`
+        
+        const BTNagregar = document.createElement("button")
+        BTNagregar.innerText = "Agregar"
+        
+        BTNagregar.onclick = () => agregarAlCarrito(el.id)
+        
+        card.appendChild(nombre)
+        card.appendChild(imagen)
+        card.appendChild(perfilDeTueste)
+        card.appendChild(precio)
+        card.appendChild(BTNagregar) 
+        container.appendChild(card) 
+
+        todoslosProductos.push(el)
     
-    const BTNagregar = document.createElement("button")
-    BTNagregar.innerText = "Agregar"
-    
-    BTNagregar.onclick = () => agregarAlCarrito(el.id)
-    
-    card.appendChild(nombre)
-    card.appendChild(imagen)
-    card.appendChild(perfilDeTueste)
-    card.appendChild(precio)
-    card.appendChild(BTNagregar) 
-    container.appendChild(card) 
+    })
 
-    todoslosProductos.push(el)
-    
 })
 .catch((_error) => console.log("No se pudo procesar la info"))
-})
-
 
 
   

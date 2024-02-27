@@ -1,50 +1,51 @@
- [
+  [
     {
        "id": "Arabica",
+
        "nombre": "Variedad Arábica",
        
-      
        "perfilDeTueste": "Tueste Claro",
    
-       "imagen": "../img/tueste-claro.jpg",
+       "imagen": "./img/tueste-claro.jpg",
    
        "precio": 3500
     },
    
    {
        "id": "Robusta",
+
        "nombre": "Variedad Robusta",
        
        "perfilDeTueste": "Tueste Oscuro",
    
-       "imagen": "../img/tueste-oscuro.jpg",
+       "imagen": "./img/tueste-oscuro.jpg",
      
        "precio": 2500
      
    },
    
    {
-       "id": "Libérica",
-       "nombre": "Variedad Liberica",
+        "id": "Libérica",
+
+        "nombre": "Variedad Liberica",
      
-       
-      "perfilDeTueste": "Tueste Medio-Oscuro",
-   
-       "imagen": "../img/tueste-medio-oscuro.jpg",
-       
-       "precio": 3000
+        "perfilDeTueste": "Tueste Medio-Oscuro",
+
+        "imagen": "./img/tueste-medio-oscuro.jpg",
+        
+        "precio": 3000
    
    },
    
    {
-       "id": "Excelsa",
-      "nombre": "Variedad Excelsa",
-      
-   
-       "perfilDeTueste": "Tueste Medio",
-   
-       "imagen": "../img/tueste-medio.jpg",
-   
-       "precio": 4000
+        "id": "Excelsa",
+
+        "nombre": "Variedad Excelsa",
+
+        "perfilDeTueste": "Tueste Medio",
+
+        "imagen": "./img/tueste-medio.jpg",
+
+        "precio": 4000
    }
-   ]
+ ]
